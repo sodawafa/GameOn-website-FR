@@ -1,0 +1,14 @@
+Tests manuels
+#5 opened on 3 Aug 2020 by nicolaspatschkowski
+
+Ajouter confirmation quand envoie réussi
+#4 opened on 3 Aug 2020 by nicolaspatschkowski
+
+Ajouter validation ou messages d'erreur
+#3 opened on 3 Aug 2020 by nicolaspatschkowski
+
+Implémenter entrées du formulaire
+#2 opened on 3 Aug 2020 by nicolaspatschkowski
+
+TODO : fermer la modale
+#1 opened on 3 Aug 2020 by nicolaspatschkowski
