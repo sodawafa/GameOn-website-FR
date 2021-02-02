@@ -230,6 +230,10 @@ input:focus.invalid {
     padding-top: 10px;
 }
 
+.content-success {
+    margin: 160px auto;
+}
+
 .modal-body {
     padding: 15px 8%;
     margin: 15px auto;

@@ -1,4 +1,5 @@
-const ageMin=10;
+const ageMin = 10;
+
 function editNav() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -10,7 +11,8 @@ function editNav() {
 
 // DOM Elements
 const modal = document.querySelector(".modal"),
-    modalBtn = document.querySelectorAll(".modal-btn"),
+    modalContent = document.querySelector(".modal > .content");
+modalBtn = document.querySelectorAll(".modal-btn"),
     closebtn = document.querySelector('.close'),
     main = document.querySelector(".hero-section");
 
@@ -51,6 +53,7 @@ function setTestValue() {
     email.value = "wsoo@gmail.com"
     birthDate.valueAsDate = new Date("1999-12-12");
     quantity.valueAsNumber = 1;
+    cities[0].checked = true;
 }
 
 
@@ -111,6 +114,7 @@ function checkErrorInputs(inputs, message) {
       if(input.checked) this.result = input;
     });*/
 }
+
 function checkErrorBirthDate(date) {
     let today = new Date();
     if (today.getFullYear() - date.getFullYear() < ageMin) {
@@ -121,6 +125,7 @@ function checkErrorBirthDate(date) {
         return false;
     }
 }
+
 /**
  *
  * @description Chaque fois que l'utilisateur saisit quelque chose on vérifie la validité du champ e-mail.
@@ -155,20 +160,19 @@ function validate() {
         checkError(birthDate) ||
         checkError(email) ||
         checkError(quantity) ||
-        (checkErrorInputs(cities, "Vous devez choisir une ville") === false)||
-        checkErrorBirthDate(birthDate.valueAsDate)
+        (checkErrorInputs(cities, "Vous devez choisir une ville") === false) ||
+        (checkErrorBirthDate(birthDate.valueAsDate))
     ) {
         testForm = false;
     }
-
 
     if (termsOfUse.checked === false) {
         alert("Vous devez accepter les conditions d'utilisation");
         testForm = false;
     }
 
+    /*envoie des données et message de confirmation*/
     if (testForm)
-        /*envoie des données et message de confirmation*/
         sendData();
 
     /*bloqué le rechargement de la page*/
@@ -177,6 +181,7 @@ function validate() {
 
 
 function sendData() {
+    modalContent.classList.add("content-success");
     document.getElementById('myForm').style.display = "none";
     document.getElementById("loader").style.display = "block";
     /*on va executer la fonction (showConfirmation) message de confirmation aprés 2secondes*/
