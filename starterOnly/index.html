@@ -44,9 +44,9 @@
         <div class="hero-img">
             <img src="./bg_img.jpg" alt="img">
         </div>
-        <!-- <button class="btn-signup modal-btn">
+         <button class="btn-signup modal-btn">
            je m'inscris
-         </button>-->
+         </button>
     </div>
 
     <div class="modal">
@@ -107,8 +107,8 @@
                         <br>
                         <input class="text-control"
                                type="date"
-                               id="birthdate"
-                               name="birthdate"
+                               id="birthDate"
+                               name="birthDate"
                                required
                                pattern="^(0?[1-9]|1[0-2])/([0-2]?[1-9]|[1-3][01])/\d{4}$"
                         >
@@ -123,6 +123,7 @@
                                class="text-control"
                                id="quantity"
                                name="quantity"
+                               value="0"
                                min="0"
                                max="99"
                                required
@@ -186,15 +187,15 @@
                     <fieldset class="formData">
                         <input class="checkbox-input"
                                type="checkbox"
-                               id="checkbox1"
+                               id="termsOfUse"
                                checked>
-                        <label class="checkbox2-label" for="checkbox1" required>
+                        <label class="checkbox2-label" for="termsOfUse" required>
                             <span class="checkbox-icon"></span> J'ai lu et accepté les conditions d'utilisation.
                         </label>
                         <br>
                         <input class="checkbox-input" type="checkbox" id="checkbox2">
                         <label class="checkbox2-label" for="checkbox2">
-                            <span class="checkbox-icon"></span> Je Je souhaite être prévenu des prochains évènements.
+                            <span class="checkbox-icon"></span> Je souhaite être prévenu des prochains évènements.
                         </label>
                         <br>
                     </fieldset>
@@ -204,6 +205,12 @@
                            value="C'est parti"
                     >
                 </form>
+
+                <div id="loader"></div>
+                <div id="confirmation" class="animate-bottom">
+                    <h2>Merci!</h2>
+                    <p>Votre réservation a été reçue.</p>
+                </div>
             </div>
         </div>
     </div>

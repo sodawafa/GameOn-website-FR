@@ -1,3 +1,4 @@
+const ageMin=10;
 function editNav() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -10,7 +11,8 @@ function editNav() {
 // DOM Elements
 const modal = document.querySelector(".modal"),
     modalBtn = document.querySelectorAll(".modal-btn"),
-    closebtn = document.querySelector('.close');
+    closebtn = document.querySelector('.close'),
+    main = document.querySelector(".hero-section");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -21,11 +23,13 @@ closebtn.addEventListener('click', function () {
 
 // launch modal form
 function launchModal() {
+    main.classList.add("flou");
     modal.style.display = "block";
     initializeValidation();
 }
 
 function closeModal() {
+    main.classList.remove("flou");
     modal.style.display = 'none';
 }
 
@@ -33,9 +37,22 @@ function closeModal() {
 let firstName = document.getElementById('first'),
     lastName = document.getElementById('last'),
     email = document.getElementById('email'),
-    birthDate = document.getElementById('birthdate'),
+    birthDate = document.getElementById('birthDate'),
     quantity = document.getElementById('quantity'),
-    cities = document.getElementsByName('location');
+    cities = document.getElementsByName('location'),
+    termsOfUse = document.getElementById('termsOfUse');
+
+
+setTestValue();
+
+function setTestValue() {
+    firstName.value = "Wafa";
+    lastName.value = "Soo";
+    email.value = "wsoo@gmail.com"
+    birthDate.valueAsDate = new Date("1999-12-12");
+    quantity.valueAsNumber = 1;
+}
+
 
 /**
  *
@@ -44,77 +61,134 @@ let firstName = document.getElementById('first'),
  */
 function sendError(elem, message = 'Merci de remplire ce champ') {
     let error = elem.parentElement.querySelector('.error');
-    error.innerHTML = message;
+    if (error !== undefined) {
+        if (message.length > 0) {
+            error.innerHTML = message;
+            error.style.display = "block";
+        } else {
+            error.innerHTML = message;
+            error.style.display = "none";
+        }
+
+    } else alert(message);
 }
 
 /**
  *
- * @description S'il y a un message d'erreur affiché et que le champ est valide, on retire l'erreur
+ * @description verifier les erreurs sur les inputs et afficher l'erreur
  * @param input
  * @returns {boolean}
  */
-function chekError(input) {
+function checkError(input) {
     if (input.validity.valid) {
         input.classList.remove('invalid');
         sendError(input, '');
-        console.log('valid');
         return false;
     } else {
         input.classList.add('invalid');
         sendError(input);
-        console.log('invalid');
         return true
     }
 }
 
+
+/**
+ * @description verifier les erreurs sur les inputs radio
+ * @param inputs
+ * @param message
+ * @returns {boolean|*}
+ */
+function checkErrorInputs(inputs, message) {
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].checked) {
+            sendError(inputs[i], '');
+            return inputs[i];
+        }
+    }
+    sendError(inputs[0], message);
+    return false;
+    /*inputs.forEach(input => {
+      if(input.checked) this.result = input;
+    });*/
+}
+function checkErrorBirthDate(date) {
+    let today = new Date();
+    if (today.getFullYear() - date.getFullYear() < ageMin) {
+        sendError(birthDate, 'Pour vous inscrire à cet événement, vous devez avoir plus de 10 ans')
+        return true;
+    } else {
+        sendError(birthDate, '');
+        return false;
+    }
+}
 /**
  *
  * @description Chaque fois que l'utilisateur saisit quelque chose on vérifie la validité du champ e-mail.
  */
 function initializeValidation() {
     firstName.addEventListener("input", function (event) {
-        chekError(firstName);
+        checkError(firstName);
     }, false);
     lastName.addEventListener("input", function (event) {
-        chekError(lastName);
+        checkError(lastName);
     }, false);
     email.addEventListener("input", function (event) {
-        chekError(email);
+        checkError(email);
     }, false);
     birthDate.addEventListener("input", function (event) {
-        chekError(birthDate);
+        checkError(birthDate);
     }, false);
     quantity.addEventListener("input", function (event) {
-        chekError(quantity);
+        checkError(quantity);
     }, false);
 }
 
+/**
+ * @description validation formulaire
+ * @returns {boolean}
+ */
 function validate() {
     let testForm = true;
-    let error;
     if (
-        chekError(firstName) ||
-        chekError(lastName) ||
-        chekError(birthDate) ||
-        chekError(email) ||
-        chekError(quantity)
+        checkError(firstName) ||
+        checkError(lastName) ||
+        checkError(birthDate) ||
+        checkError(email) ||
+        checkError(quantity) ||
+        (checkErrorInputs(cities, "Vous devez choisir une ville") === false)||
+        checkErrorBirthDate(birthDate.valueAsDate)
     ) {
         testForm = false;
-
     }
 
-    if (cities[0].checked || cities[1].checked || cities[2].checked || cities[3].checked || cities[4].checked || cities[5].checked) {
-        sendError(cities[0], "Vous devez choisir une ville")
-        testForm = false;
-    }
-    let checkBox = document.getElementById('checkbox1');
-    if (checkBox.checked == false) {
+
+    if (termsOfUse.checked === false) {
+        alert("Vous devez accepter les conditions d'utilisation");
         testForm = false;
     }
 
-    return testForm;
+    if (testForm)
+        /*envoie des données et message de confirmation*/
+        sendData();
+
+    /*bloqué le rechargement de la page*/
+    return false;
 }
 
+
+function sendData() {
+    document.getElementById('myForm').style.display = "none";
+    document.getElementById("loader").style.display = "block";
+    /*on va executer la fonction (showConfirmation) message de confirmation aprés 2secondes*/
+    setTimeout(showConfirmation, 2000);
+}
+
+function showConfirmation() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("confirmation").style.display = "block";
+    /*on va fermé le modal aprés 3secondes*/
+    setTimeout(closeModal, 3000);
+}
 
 
 
