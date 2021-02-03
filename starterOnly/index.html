@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="utf-8"/>
-    <title>Reservation</title>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <link rel="stylesheet" href="modal.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet"/>
+    <title>Reservation</title>
 </head>
 <body>
 <div class="topnav" id="myTopnav">
     <div class="header-logo">
-        <img alt="logo" src="Logo.png" width="auto" height="auto"/>
+        <img alt="logo" src="Logo.png"/>
     </div>
     <div class="main-navbar">
-
         <a href="#" class="active"><span>Accueil</span></a>
         <a href="#"><span>Détails de l'évènement</span></a>
         <a href="#"><span>À propos</span></a>
@@ -24,7 +23,6 @@
             <i class="fa fa-bars"></i>
         </a>
     </div>
-</div>
 </div>
 <main>
     <div class="hero-section">
@@ -109,9 +107,9 @@
                                type="date"
                                id="birthDate"
                                name="birthDate"
-                               required
-                               pattern="^(0?[1-9]|1[0-2])/([0-2]?[1-9]|[1-3][01])/\d{4}$"
-                        >
+                               required>
+                               <!--pattern="^(0?[1-9]|1[0-2])/([0-2]?[1-9]|[1-3][01])/\d{4}$"-->
+
                         <span class="error"></span>
                         <br>
                     </fieldset>
@@ -189,7 +187,7 @@
                                type="checkbox"
                                id="termsOfUse"
                                checked>
-                        <label class="checkbox2-label" for="termsOfUse" required>
+                        <label class="checkbox2-label" for="termsOfUse">
                             <span class="checkbox-icon"></span> J'ai lu et accepté les conditions d'utilisation.
                         </label>
                         <br>

@@ -12,7 +12,7 @@ function editNav() {
 // DOM Elements
 const modal = document.querySelector(".modal"),
     modalContent = document.querySelector(".modal > .content");
-modalBtn = document.querySelectorAll(".modal-btn"),
+    modalBtn = document.querySelectorAll(".modal-btn"),
     closebtn = document.querySelector('.close'),
     main = document.querySelector(".hero-section");
 
