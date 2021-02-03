@@ -12,7 +12,7 @@ function editNav() {
 // DOM Elements
 const modal = document.querySelector(".modal"),
     modalContent = document.querySelector(".modal > .content");
-    modalBtn = document.querySelectorAll(".modal-btn"),
+modalBtn = document.querySelectorAll(".modal-btn"),
     closebtn = document.querySelector('.close'),
     main = document.querySelector(".hero-section");
 
@@ -36,25 +36,13 @@ function closeModal() {
 }
 
 
-let firstName = document.getElementById('first'),
-    lastName = document.getElementById('last'),
+let firstName = document.getElementById('firstName'),
+    lastName = document.getElementById('lastName'),
     email = document.getElementById('email'),
     birthDate = document.getElementById('birthDate'),
     quantity = document.getElementById('quantity'),
     cities = document.getElementsByName('location'),
     termsOfUse = document.getElementById('termsOfUse');
-
-
-setTestValue();
-
-function setTestValue() {
-    firstName.value = "Wafa";
-    lastName.value = "Soo";
-    email.value = "wsoo@gmail.com"
-    birthDate.valueAsDate = new Date("1999-12-12");
-    quantity.valueAsNumber = 1;
-    cities[0].checked = true;
-}
 
 
 /**
@@ -82,14 +70,14 @@ function sendError(elem, message = 'Merci de remplire ce champ') {
  * @param input
  * @returns {boolean}
  */
-function checkError(input) {
+function checkError(input, message) {
     if (input.validity.valid) {
         input.classList.remove('invalid');
         sendError(input, '');
         return false;
     } else {
         input.classList.add('invalid');
-        sendError(input);
+        sendError(input, message);
         return true
     }
 }
@@ -132,16 +120,16 @@ function checkErrorBirthDate(date) {
  */
 function initializeValidation() {
     firstName.addEventListener("input", function (event) {
-        checkError(firstName);
+        checkError(firstName, "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
     }, false);
     lastName.addEventListener("input", function (event) {
-        checkError(lastName);
+        checkError(lastName, "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
     }, false);
     email.addEventListener("input", function (event) {
         checkError(email);
     }, false);
     birthDate.addEventListener("input", function (event) {
-        checkError(birthDate);
+        checkError(birthDate, "Vous devez entrer votre date de naissance.");
     }, false);
     quantity.addEventListener("input", function (event) {
         checkError(quantity);
@@ -155,19 +143,19 @@ function initializeValidation() {
 function validate() {
     let testForm = true;
     if (
-        checkError(firstName) ||
-        checkError(lastName) ||
-        checkError(birthDate) ||
-        checkError(email) ||
+        checkError(firstName, "Veuillez entrer 2 caractères ou plus pour le champ du nom.") ||
+        checkError(lastName, "Veuillez entrer 2 caractères ou plus pour le champ du nom.") ||
+        checkError(birthDate, "Vous devez entrer votre date de naissance.") ||
+        checkError(email, "Vous devez entrer un mail valide.") ||
         checkError(quantity) ||
-        (checkErrorInputs(cities, "Vous devez choisir une ville") === false) ||
+        (checkErrorInputs(cities, "Vous devez choisir une option.") === false) ||
         (checkErrorBirthDate(birthDate.valueAsDate))
     ) {
         testForm = false;
     }
 
     if (termsOfUse.checked === false) {
-        alert("Vous devez accepter les conditions d'utilisation");
+        alert("Vous devez vérifier que vous acceptez les termes et conditions.");
         testForm = false;
     }
 
@@ -196,4 +184,19 @@ function showConfirmation() {
 }
 
 
+/*Tests manuels*/
+function test1() {
+    firstName.value = "Wafa";
+    lastName.value = "Soo";
+    email.value = "wsoo@gmail.com"
+    birthDate.valueAsDate = new Date("1999-12-12");
+    quantity.valueAsNumber = 1;
+    cities[0].checked = true;
+}
 
+function test2() {
+    firstName.value = "Wafa";
+    lastName.value = "S";
+    email.value = "ww@soocom"
+    birthDate.valueAsDate = new Date();
+}
