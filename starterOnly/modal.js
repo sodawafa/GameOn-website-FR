@@ -11,7 +11,7 @@ function editNav() {
 
 // DOM Elements
 const modal = document.querySelector(".modal"),
-    modalContent = document.querySelector(".modal > .content");
+    modalContent = document.querySelector(".modal > .content"),
 modalBtn = document.querySelectorAll(".modal-btn"),
     closebtn = document.querySelector('.close'),
     main = document.querySelector(".hero-section");
@@ -120,13 +120,13 @@ function checkErrorBirthDate(date) {
  */
 function initializeValidation() {
     firstName.addEventListener("input", function (event) {
-        checkError(firstName, "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
+        checkError(firstName, "Veuillez entrer 2 caractères ou plus pour le champ du prénon.");
     }, false);
     lastName.addEventListener("input", function (event) {
         checkError(lastName, "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
     }, false);
     email.addEventListener("input", function (event) {
-        checkError(email);
+        checkError(email,"Vous devez entrer un mail valide.");
     }, false);
     birthDate.addEventListener("input", function (event) {
         checkError(birthDate, "Vous devez entrer votre date de naissance.");
