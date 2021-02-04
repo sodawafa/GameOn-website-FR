@@ -12,7 +12,7 @@ function editNav() {
 // DOM Elements
 const modal = document.querySelector(".modal"),
     modalContent = document.querySelector(".modal > .content"),
-modalBtn = document.querySelectorAll(".modal-btn"),
+    modalBtn = document.querySelectorAll(".modal-btn"),
     closebtn = document.querySelector('.close'),
     main = document.querySelector(".hero-section");
 
@@ -25,6 +25,7 @@ closebtn.addEventListener('click', function () {
 
 // launch modal form
 function launchModal() {
+    window.scrollTo(0, 0);
     main.classList.add("flou");
     modal.style.display = "block";
     initializeValidation();
@@ -126,7 +127,7 @@ function initializeValidation() {
         checkError(lastName, "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
     }, false);
     email.addEventListener("input", function (event) {
-        checkError(email,"Vous devez entrer un mail valide.");
+        checkError(email, "Vous devez entrer un mail valide.");
     }, false);
     birthDate.addEventListener("input", function (event) {
         checkError(birthDate, "Vous devez entrer votre date de naissance.");
@@ -179,7 +180,7 @@ function sendData() {
 function showConfirmation() {
     document.getElementById("loader").style.display = "none";
     document.getElementById("confirmation").style.display = "block";
-    /*on va fermé le modal aprés 3secondes*/
+    /*on va fermé le modal aprés 3 secondes*/
     setTimeout(closeModal, 3000);
 }
 
