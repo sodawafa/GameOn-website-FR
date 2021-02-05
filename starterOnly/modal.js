@@ -35,6 +35,13 @@ function closeModal() {
     main.classList.remove("flou");
     modal.style.display = 'none';
 }
+function resetModal() {
+    closeModal();
+    document.getElementById("myForm").reset();
+    document.getElementById('myForm').style.display = "block";
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("confirmation").style.display = "none";
+}
 
 
 let firstName = document.getElementById('firstName'),
@@ -71,6 +78,7 @@ function sendError(elem, message = 'Merci de remplire ce champ') {
  * @param input
  * @returns {boolean}
  */
+
 function checkError(input, message) {
     if (input.validity.valid) {
         input.classList.remove('invalid');
@@ -170,7 +178,6 @@ function validate() {
 
 
 function sendData() {
-    modalContent.classList.add("content-success");
     document.getElementById('myForm').style.display = "none";
     document.getElementById("loader").style.display = "block";
     /*on va executer la fonction (showConfirmation) message de confirmation aprés 2secondes*/
@@ -181,7 +188,7 @@ function showConfirmation() {
     document.getElementById("loader").style.display = "none";
     document.getElementById("confirmation").style.display = "block";
     /*on va fermé le modal aprés 3 secondes*/
-    setTimeout(closeModal, 3000);
+    setTimeout(resetModal, 3000);
 }
 
 

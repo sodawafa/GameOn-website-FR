@@ -9,6 +9,7 @@
     <title>Reservation</title>
 </head>
 <body>
+<header>
 <div class="topnav" id="myTopnav">
     <div class="header-logo">
         <img alt="logo" src="Logo.png"/>
@@ -24,6 +25,7 @@
         </a>
     </div>
 </div>
+</header>
 <main>
     <div class="hero-section">
         <div class="hero-content">
@@ -51,8 +53,6 @@
     <div class="modal">
         <div class="content">
             <span class="close"></span>
-
-
             <div class="modal-body">
                 <form name="reserve"
                       action="index.html"
@@ -60,7 +60,6 @@
                       id="myForm"
                       onsubmit="return validate();"
                 >
-
                     <fieldset class="formData">
                         <label for="firstName">Prénom</label><br>
                         <input class="text-control"
@@ -68,7 +67,7 @@
                                id="firstName"
                                name="firstName"
                                required
-                               pattern="^[A-Za-z-\s]{2,255}$"
+                               pattern="^[A-zÀ-ž]{2,255}$"
                         >
                         <span class="error"></span><br>
                     </fieldset>
@@ -80,7 +79,7 @@
                                id="lastName"
                                name="lastName"
                                required
-                               pattern="^[A-Za-z-\s]{2,255}$"
+                               pattern="^[A-zÀ-ž]{2,255}$"
                         >
                         <span class="error"></span>
                         <br>

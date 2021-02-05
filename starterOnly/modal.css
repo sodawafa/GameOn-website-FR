@@ -191,9 +191,6 @@ input:focus.invalid {
     padding-top: 10px;
 }
 
-.content-success {
-    margin: 160px auto;
-}
 
 .modal-body {
     padding: 15px 8%;
@@ -740,5 +737,5 @@ p {
 #confirmation {
     display: none;
     text-align: center;
-
+    margin-top: 150px;
 }
